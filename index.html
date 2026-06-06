@@ -1181,8 +1181,10 @@
     <header class="header">
       <div class="header-brand">
         <div class="social-badges">
-          <a href="https://instagram.com/faiiruuzzzs" target="_blank" rel="noopener noreferrer" class="social-badge instagram">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <a href="https://instagram.com/faiiruuzzzs" target="_blank" rel="noopener noreferrer"
+            class="social-badge instagram">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -1190,8 +1192,11 @@
             <span>faiiruuzzzs</span>
           </a>
           <a href="https://github.com/FairusPryg" target="_blank" rel="noopener noreferrer" class="social-badge github">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+              </path>
             </svg>
             <span>FairusPryg</span>
           </a>
@@ -1234,8 +1239,10 @@
       <div class="chart-header">
         <span class="chart-title">Proporsi Kategori</span>
         <div class="chart-toggle">
-          <button class="chart-toggle-btn active" data-chart-type="pengeluaran" onclick="setChartType('pengeluaran')">Pengeluaran</button>
-          <button class="chart-toggle-btn" data-chart-type="pemasukan" onclick="setChartType('pemasukan')">Pemasukan</button>
+          <button class="chart-toggle-btn active" data-chart-type="pengeluaran"
+            onclick="setChartType('pengeluaran')">Pengeluaran</button>
+          <button class="chart-toggle-btn" data-chart-type="pemasukan"
+            onclick="setChartType('pemasukan')">Pemasukan</button>
         </div>
       </div>
       <div id="chartPieContainer"></div>
@@ -1266,8 +1273,10 @@
         <div class="field">
           <label>Tipe Transaksi</label>
           <div class="type-toggle">
-            <button type="button" class="type-btn active" data-type="pengeluaran" onclick="selectType('pengeluaran')">💸 Pengeluaran</button>
-            <button type="button" class="type-btn" data-type="pemasukan" onclick="selectType('pemasukan')">📈 Pemasukan</button>
+            <button type="button" class="type-btn active" data-type="pemasukan" onclick="selectType('pemasukan')">📈
+              Pemasukan</button>
+            <button type="button" class="type-btn" data-type="pengeluaran"
+              onclick="selectType('pengeluaran')">💸Pengeluaran</button>
           </div>
         </div>
 
@@ -1533,7 +1542,7 @@
         const isIncome = e.type === 'pemasukan';
         const activeCategories = isIncome ? INCOME_CATEGORIES : CATEGORIES;
         const cat = activeCategories.find(c => c.id === e.category) || { label: e.category, icon: '📦', color: '#64748B' };
-        
+
         const sign = isIncome ? '+' : '-';
         const color = isIncome ? '#10B981' : '#FF6B6B';
 
@@ -1594,7 +1603,7 @@
       document.getElementById('inputDate').value = todayISO();
       document.getElementById('inputAmount').value = '';
       document.getElementById('inputNote').value = '';
-      clearErrors(); 
+      clearErrors();
       selectType('pengeluaran');
       document.getElementById('overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1610,7 +1619,7 @@
       document.getElementById('inputDate').value = exp.date;
       document.getElementById('inputAmount').value = formatNumberWithDots(exp.amount.toString());
       document.getElementById('inputNote').value = exp.note || '';
-      clearErrors(); 
+      clearErrors();
       selectType(exp.type || 'pengeluaran');
       selectCat(exp.category);
       document.getElementById('overlay').classList.add('open');
