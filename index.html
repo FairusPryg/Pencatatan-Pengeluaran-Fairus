@@ -115,6 +115,35 @@
       text-transform: uppercase;
     }
 
+    .instagram-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(225, 48, 108, 0.1);
+      border: 1px solid rgba(225, 48, 108, 0.25);
+      border-radius: 99px;
+      padding: 4px 10px;
+      color: #FF5A8F;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      width: fit-content;
+      margin-bottom: 8px;
+    }
+
+    .instagram-badge:hover {
+      background: rgba(225, 48, 108, 0.2);
+      border-color: rgba(225, 48, 108, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(225, 48, 108, 0.25);
+    }
+
+    .instagram-icon {
+      width: 12px;
+      height: 12px;
+    }
+
     .header-brand h1 {
       font-family: 'DM Serif Display', serif;
       font-size: 28px;
@@ -374,7 +403,7 @@
       align-items: center;
       justify-content: center;
       z-index: 2;
-      box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
     }
 
     .chart-pie-center-val {
@@ -1062,7 +1091,14 @@
   <div class="app">
     <header class="header">
       <div class="header-brand">
-        <span class="label">IG:faiiruuzzzs</span>
+        <a href="https://instagram.com/faiiruuzzzs" target="_blank" rel="noopener noreferrer" class="instagram-badge">
+          <svg class="instagram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>faiiruuzzzs</span>
+        </a>
         <span class="label">📊 Pencatatan Uang</span>
         <h1>Pengeluaran_FairusPriyogi</h1>
       </div>
@@ -1293,7 +1329,7 @@
 
       const totalAmt = entries.reduce((sum, [_, amt]) => sum + amt, 0);
       const container = document.getElementById('chartPieContainer');
-      
+
       let currentAngle = 0;
       const gradientParts = [];
       let legendHTML = '';
