@@ -156,6 +156,15 @@
       border-radius: 50%;
       background: #18aa9e;
       pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-label,
+    .hero-amount,
+    .hero-sub,
+    .hero-stats {
+      position: relative;
+      z-index: 2;
     }
 
     .hero-label {
@@ -1044,7 +1053,7 @@
         </div>
         <div class="field" id="fieldAmount">
           <label>💰 Nominal (Rp)</label>
-          <input type="number" id="inputAmount" placeholder="cth: 50000" min="0" step="500" />
+          <input type="text" id="inputAmount" placeholder="cth: 50.000" inputmode="numeric" />
           <span class="error-msg">Masukkan nominal yang valid (> 0)</span>
         </div>
         <div class="field" id="fieldCategory">
@@ -1290,7 +1299,7 @@
       document.getElementById('modalTitle').textContent = 'Edit Pengeluaran';
       document.getElementById('btnSave').textContent = 'Simpan Perubahan';
       document.getElementById('inputDate').value = exp.date;
-      document.getElementById('inputAmount').value = exp.amount;
+      document.getElementById('inputAmount').value = formatNumberWithDots(exp.amount.toString());
       document.getElementById('inputNote').value = exp.note || '';
       clearErrors(); buildCatGrid(); selectCat(exp.category);
       document.getElementById('overlay').classList.add('open');
@@ -1309,7 +1318,8 @@
     /* ─── SAVE ───────────────────────────────────────────────────────────── */
     function saveExpense() {
       const date = document.getElementById('inputDate').value;
-      const amount = parseFloat(document.getElementById('inputAmount').value);
+      const amountRaw = document.getElementById('inputAmount').value;
+      const amount = parseFloat(amountRaw.replace(/\./g, ''));
       const note = document.getElementById('inputNote').value.trim();
       let valid = true;
       clearErrors();
@@ -1361,6 +1371,9 @@
     function escHtml(s) {
       return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
+    function formatNumberWithDots(val) {
+      return val.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
     function showToast(msg, type = 'success') {
       const wrap = document.getElementById('toastWrap');
       const t = document.createElement('div');
@@ -1379,6 +1392,10 @@
       loadData();
       renderHeaderDate();
       setMode('daily');
+
+      document.getElementById('inputAmount').addEventListener('input', function (e) {
+        this.value = formatNumberWithDots(this.value);
+      });
     });
 
 

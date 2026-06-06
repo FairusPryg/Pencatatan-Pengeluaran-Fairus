@@ -270,7 +270,7 @@ function openEdit(id, e) {
   document.getElementById('modalTitle').textContent = 'Edit Pengeluaran';
   document.getElementById('btnSave').textContent    = 'Simpan Perubahan';
   document.getElementById('inputDate').value        = exp.date;
-  document.getElementById('inputAmount').value      = exp.amount;
+  document.getElementById('inputAmount').value      = formatNumberWithDots(exp.amount.toString());
   document.getElementById('inputNote').value        = exp.note || '';
   clearErrors();
   buildCatGrid();
@@ -291,7 +291,8 @@ function overlayClick(e) {
 /* ─── SAVE ───────────────────────────────────────────────────────────── */
 function saveExpense() {
   const date   = document.getElementById('inputDate').value;
-  const amount = parseFloat(document.getElementById('inputAmount').value);
+  const amountRaw = document.getElementById('inputAmount').value;
+  const amount = parseFloat(amountRaw.replace(/\./g, ''));
   const note   = document.getElementById('inputNote').value.trim();
   let valid    = true;
 
@@ -377,6 +378,10 @@ function showToast(msg, type = 'success') {
   setTimeout(() => t.remove(), 2700);
 }
 
+function formatNumberWithDots(val) {
+  return val.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 /* ─── KEYBOARD ───────────────────────────────────────────────────────── */
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); closeConfirm(); }
@@ -390,4 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadData();
   renderHeaderDate();
   setMode('daily');
+
+  document.getElementById('inputAmount').addEventListener('input', function (e) {
+    this.value = formatNumberWithDots(this.value);
+  });
 });
